@@ -1,0 +1,175 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090d13" />
+  <title>AMMORA PULSE — GIWA Launch Intelligence</title>
+  <meta name="description" content="Independent launch intelligence for the Ammora ecosystem on GIWA." />
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#">
+      <span class="brand-mark">P</span>
+      <span>AMMORA<span class="brand-light">PULSE</span><small>GIWA LAUNCH INTELLIGENCE</small></span>
+    </a>
+    <div class="top-right">
+      <span class="network"><i></i> GIWA SEPOLIA</span>
+      <button class="btn ghost" id="connect">Connect wallet</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span></span> AMMORA ECOSYSTEM · ON-CHAIN MONITOR</div>
+      <div class="hero-grid">
+        <div>
+          <h1>Find the signal.<br /><em>Before the crowd.</em></h1>
+          <p class="lead">An independent launch intelligence terminal. Track bonding curves, compare opportunities and investigate launches on GIWA.</p>
+        </div>
+        <div class="hero-note">
+          <span class="note-label">YOUR EDGE</span>
+          <strong>One chain.<br />Every launch.</strong>
+          <span class="note-foot">Live on-chain reads · No fabricated metrics</span>
+        </div>
+      </div>
+
+      <div class="stats">
+        <article class="stat">
+          <span>DISCOVERED LAUNCHES</span>
+          <b id="s-total">—</b>
+          <small>Factory events</small>
+        </article>
+        <article class="stat">
+          <span>ACTIVE CURVES</span>
+          <b id="s-live">—</b>
+          <small>Trading or ready</small>
+        </article>
+        <article class="stat">
+          <span>GRADUATED</span>
+          <b id="s-grad">—</b>
+          <small>Completed curves</small>
+        </article>
+        <article class="stat">
+          <span>NETWORK BLOCK</span>
+          <b id="s-block">—</b>
+          <small>Latest GIWA block</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">MARKET INTELLIGENCE</div>
+          <h2>Launch explorer</h2>
+          <p>Inspect launches and their live bonding-curve progress.</p>
+        </div>
+        <button class="btn refresh" id="refresh">↻ Refresh data</button>
+      </div>
+
+      <div class="toolbar">
+        <label class="search">
+          <span>⌕</span>
+          <input id="search" type="search" placeholder="Search token name, symbol or address…" />
+        </label>
+
+        <div class="filters">
+          <button class="chip on" data-f="all">All launches</button>
+          <button class="chip" data-f="live">Active</button>
+          <button class="chip" data-f="grad">Graduated</button>
+          <button class="chip" data-f="watch">★ Watchlist <span id="watch-count">0</span></button>
+          <button class="chip" data-f="near">Near graduation</button>
+        </div>
+      </div>
+
+      <div class="pulse-controls">
+        <label class="sort-control">
+          <span>SORT BY</span>
+          <select id="sort">
+            <option value="newest">Newest first</option>
+            <option value="progress">Highest progress</option>
+            <option value="raised">Most WETH raised</option>
+            <option value="holders">Most holders</option>
+          </select>
+        </label>
+
+        <div class="compare-control">
+          <span id="compare-count">0 selected</span>
+          <button class="btn ghost" id="compare-open" disabled>Compare launches</button>
+          <button class="btn ghost" id="compare-clear">Clear</button>
+        </div>
+      </div>
+
+      <div class="list-heading">
+        <span>ASSET / CURVE STATUS</span>
+        <span>GRADUATION PROGRESS</span>
+        <span>ON-CHAIN DETAILS</span>
+      </div>
+
+      <div id="list" class="list">
+        <div class="empty">Connecting to GIWA and scanning Ammora launches…</div>
+      </div>
+
+      <div class="data-foot">
+        <span><i class="live-dot"></i> Data retrieved from GIWA</span>
+        <span>Curve information powered by Ammora SDK</span>
+      </div>
+    </section>
+
+    <section class="insight">
+      <div class="eyebrow">HOW PULSE WORKS</div>
+      <h2>From launch event to live intelligence.</h2>
+
+      <div class="insight-grid">
+        <article>
+          <span>01 / DISCOVER</span>
+          <h3>Factory monitoring</h3>
+          <p>Detect token launches through Ammora factory events on GIWA.</p>
+        </article>
+        <article>
+          <span>02 / ANALYSE</span>
+          <h3>Curve intelligence</h3>
+          <p>Read reserves, fees and graduation progress through the Ammora SDK.</p>
+        </article>
+        <article>
+          <span>03 / INVESTIGATE</span>
+          <h3>Launch comparison</h3>
+          <p>Compare available curve data and verify token records directly on the explorer.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand footer-brand">
+      <span class="brand-mark">P</span>
+      <span>AMMORA<span class="brand-light">PULSE</span></span>
+    </div>
+    <span>Independent GIWA ecosystem analytics · Testnet</span>
+    <a href="https://ammora.org" target="_blank" rel="noopener">Ammora ↗</a>
+  </footer>
+
+  <!-- Launch detail modal -->
+  <div class="modal" id="modal" hidden>
+    <div class="sheet">
+      <button class="x" id="close" aria-label="Close">×</button>
+      <div id="detail"></div>
+    </div>
+  </div>
+
+  <!-- Launch comparison modal -->
+  <div class="modal" id="compare-modal" hidden>
+    <div class="sheet">
+      <button class="x" id="compare-close" aria-label="Close">×</button>
+      <div id="compare-detail"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
